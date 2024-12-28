@@ -47,6 +47,12 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     massa_node_$MASSA_VERSION \
     bash
 
+## Watch node logs
+
+    MASSA_VERSION="MAIN.2.4"; \
+    docker container logs -f \
+    massa_node_$MASSA_VERSION \
+
 
 # Expert mode:
 
