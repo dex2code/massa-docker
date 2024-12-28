@@ -45,6 +45,10 @@ LABEL description="Massa node"
 LABEL version="${MASSA_VERSION}"
 LABEL maintainer="github.com/dex2code/massa-docker"
 
+RUN   apt-get update \
+      && apt-get -y install nano\
+      && apt-get clean
+
 RUN   groupadd \
             -g ${MASSA_GID} \
             massa
