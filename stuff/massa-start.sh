@@ -33,7 +33,6 @@ fi
 
 if [[ ! -z "$MASSA_ADDRESS" ]]; then
    echo "MASSA_ADDRESS set: $MASSA_ADDRESS"
-
    sed -i "/routable_ip/c\    routable_ip = \"$MASSA_ADDRESS\"" $CONFIG_FILE_PATH/$CONFIG_FILE
 fi
 

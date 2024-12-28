@@ -99,6 +99,6 @@ COPY  --chown=${MASSA_UID}:${MASSA_GID} \
       stuff/massa-pass.txt ${MASSA_HOME}/massa-node/
 
 
-EXPOSE  31244/tcp 31245/tcp 31248/tcp 33035/tcp 33036/tcp 33037/tcp
+EXPOSE  31244/tcp 31245/tcp 31248/tcp 33035/tcp 33036/tcp 33037/tcp 33038/tcp
 WORKDIR ${MASSA_HOME}/massa-node
 CMD     ["./massa-start.sh"]
