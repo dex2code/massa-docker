@@ -6,3 +6,4 @@
 
 [bootstrap]
     retry_delay = 15000
+    read_timeout = 600000
