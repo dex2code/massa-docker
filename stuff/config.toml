@@ -1,0 +1,8 @@
+[protocol]
+    #routable_ip = ""
+
+[network]
+    #routable_ip = ""
+
+[bootstrap]
+    retry_delay = 15000
