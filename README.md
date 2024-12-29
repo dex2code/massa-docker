@@ -65,7 +65,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     MASSA_VERSION="MAIN.2.4"; \
     docker buildx build \
     --build-arg MASSA_VERSION="$MASSA_VERSION" \
-    -t "dex2build/massa-node:$MASSA_VERSION" \
+    -t "massa-node:$MASSA_VERSION" \
     --progress="plain" \
     --no-cache \
     .
