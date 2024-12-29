@@ -84,7 +84,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     -p 31248:31248 \
     -p 33035:33035 \
     -p 33037:33037 \
-    dex2build/massa-node:$MASSA_VERSION
+    massa-node:$MASSA_VERSION
 
 ### Run container
 
