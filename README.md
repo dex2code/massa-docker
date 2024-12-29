@@ -1,6 +1,6 @@
 # MASSA Blockchain Node - Docker Container
 
-The MASSA blockchain node can be launched with a single command using the Docker containerization technology.
+The MASSA blockchain node ( https://massa.net ) can be launched with a single command using the Docker containerization technology.
 
 **Important!** Before proceeding further, make sure that Docker is installed on your server.
 More details here: https://www.docker.com/get-started/
@@ -63,10 +63,11 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 ### Build image
 
     MASSA_VERSION="MAIN.2.4"; \
-    docker image build \
+    docker buildx build \
     --build-arg MASSA_VERSION="$MASSA_VERSION" \
     -t "dex2build/massa-node:$MASSA_VERSION" \
-    --no-cache --progress=plain \
+    --progress="plain" \
+    --no-cache \
     .
 
 ### Create container
