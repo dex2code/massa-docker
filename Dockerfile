@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG   MASSA_VERSION="MAIN.2.4"
 ARG   MASSA_BUILD="/massa"
 ARG   MASSA_HOME="/home/massa"
