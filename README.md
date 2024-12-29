@@ -16,7 +16,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     -d \
     -h "massa" \
     --name "massa_node_$MASSA_VERSION" \
-    --restart always \
+    --restart unless-stopped \
     -e MASSA_PASS="MySuperPass" \
     -e MASSA_ADDRESS="12.34.56.78" \
     -p 31244:31244 \
@@ -45,7 +45,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     docker container exec \
     -ti \
     massa_node_$MASSA_VERSION \
-    bash
+    /usr/bin/bash
 
 ## Watch node logs
 
@@ -66,6 +66,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     docker image build \
     --build-arg MASSA_VERSION="$MASSA_VERSION" \
     -t "dex2build/massa-node:$MASSA_VERSION" \
+    --no-cache --progress=plain \
     .
 
 ### Create container
@@ -74,7 +75,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     docker container create \
     -h "massa" \
     --name "massa_node_$MASSA_VERSION" \
-    --restart always \
+    --restart unless-stopped \
     -e MASSA_PASS="MySuperPass" \
     -e MASSA_ADDRESS="12.34.56.78" \
     -p 31244:31244 \
@@ -87,17 +88,17 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 ### Run container
 
     MASSA_VERSION="MAIN.2.4"; \
-    docker container start dex2build/massa-node:$MASSA_VERSION
+    docker container start massa_node_$MASSA_VERSION
 
 ### Stop container
 
     MASSA_VERSION="MAIN.2.4"; \
-    docker container stop dex2build/massa-node:$MASSA_VERSION
+    docker container stop massa_node_$MASSA_VERSION
 
 ### Remove container
 
     MASSA_VERSION="MAIN.2.4"; \
-    docker container rm dex2build/massa-node:$MASSA_VERSION
+    docker container rm massa_node_$MASSA_VERSION
 
 
 
