@@ -4,17 +4,21 @@ ARG   MASSA_HOME="/home/massa"
 
 ARG   MASSA_UID=1981
 ARG   MASSA_GID=1981
+ARG   MASSA_USER=massa
+ARG   MASSA_GROUP=massa
+
 
 ARG RUST_VERSION="1.83.0-bookworm"
 ARG UBUNTU_VERSION="24.04"
 
 
-FROM  mirror.gcr.io/rust:${RUST_VERSION} AS builder
+FROM  rust:${RUST_VERSION} AS builder
 
 ARG   MASSA_BUILD
 ARG   MASSA_VERSION
 
-RUN   apt-get update \
+RUN   --mount=type=cache,target=~/.cache \
+      apt-get update \
       && apt-get -y install \
             pkg-config \
             curl \
@@ -33,35 +37,38 @@ RUN   RUST_BACKTRACE=full cargo build --release
 
 
 
-FROM  mirror.gcr.io/ubuntu:${UBUNTU_VERSION} AS massa
+FROM  ubuntu:${UBUNTU_VERSION} AS massa
 
 ARG   MASSA_UID
 ARG   MASSA_GID
+ARG   MASSA_USER
+ARG   MASSA_GROUP
 ARG   MASSA_HOME
 ARG   MASSA_BUILD
 ARG   MASSA_VERSION
 
+LABEL maintainer="github.com/dex2code"
 LABEL description="Massa node"
 LABEL version="${MASSA_VERSION}"
-LABEL maintainer="github.com/dex2code/massa-docker"
 
-RUN   apt-get update \
-      && apt-get -y install nano\
+RUN   --mount=type=cache,target=~/.cache \
+      apt-get update \
+      && apt-get -y install nano less\
       && apt-get clean
 
 RUN   groupadd \
             -g ${MASSA_GID} \
-            massa
+            ${MASSA_GROUP}
 
 RUN   useradd \
             -d ${MASSA_HOME} \
-            -g massa \
+            -g ${MASSA_GROUP} \
             -m \
             -s /sbin/nologin \
             -u ${MASSA_UID} \
-            massa
+            ${MASSA_USER}
 
-USER    massa
+USER    ${MASSA_USER}
 WORKDIR ${MASSA_HOME}
 
 RUN   mkdir -p \
