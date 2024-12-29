@@ -28,7 +28,7 @@ echo "MASSA_PASS: $MASSA_PASS"
 
 if [[ ! -f $CONFIG_FILE_PATH/$CONFIG_FILE ]] || [[ ! -s $CONFIG_FILE_PATH/$CONFIG_FILE ]]; then
    echo "$CONFIG_FILE not found. Creating..."
-   echo -e "[network]\n    #routable_ip = \"\"\n\n[protocol]\n    #routable_ip = \"\"\n\n[bootstrap]\n    retry_delay = 15000\n    read_timeout = 600000" > $CONFIG_FILE_PATH/$CONFIG_FILE
+   echo -e "[protocol]\n    #routable_ip = \"\"\n\n[bootstrap]\n    retry_delay = 5000\n    read_timeout = 300000\n    read_timeout = 300000" > $CONFIG_FILE_PATH/$CONFIG_FILE
 fi
 
 if [[ ! -z "$MASSA_ADDRESS" ]]; then
