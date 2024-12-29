@@ -5,19 +5,19 @@ ARG   MASSA_BUILD="/massa"
 ARG   MASSA_HOME="/home/massa"
 
 ARG   MASSA_UID=1981
-ARG   MASSA_GID=1981
 ARG   MASSA_USER=massa
+ARG   MASSA_GID=1981
 ARG   MASSA_GROUP=massa
-
 
 ARG RUST_VERSION="1.83.0-bookworm"
 ARG UBUNTU_VERSION="24.04"
 
 
+
 FROM  rust:${RUST_VERSION} AS builder
 
-ARG   MASSA_BUILD
 ARG   MASSA_VERSION
+ARG   MASSA_BUILD
 
 RUN   --mount=type=cache,target=~/.cache \
       apt-get update \
@@ -41,13 +41,14 @@ RUN   RUST_BACKTRACE=full cargo build --release
 
 FROM  ubuntu:${UBUNTU_VERSION} AS massa
 
-ARG   MASSA_UID
-ARG   MASSA_GID
-ARG   MASSA_USER
-ARG   MASSA_GROUP
-ARG   MASSA_HOME
-ARG   MASSA_BUILD
 ARG   MASSA_VERSION
+ARG   MASSA_BUILD
+ARG   MASSA_HOME
+
+ARG   MASSA_UID
+ARG   MASSA_USER
+ARG   MASSA_GID
+ARG   MASSA_GROUP
 
 LABEL maintainer="github.com/dex2code"
 LABEL description="Massa node"
@@ -74,8 +75,8 @@ USER    ${MASSA_USER}
 WORKDIR ${MASSA_HOME}
 
 RUN   mkdir -p \
-            massa-node \
-            massa-client
+            ${MASSA_HOME}/massa-node \
+            ${MASSA_HOME}/massa-client
 
 COPY  --from=builder \
       --chown=${MASSA_UID}:${MASSA_GID} \
