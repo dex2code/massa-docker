@@ -3,22 +3,22 @@
 NODE_PATH="$HOME/massa-node"
 PASS_FILE="massa-pass.txt"
 
-echo "Starting massa-client..."
+
+echo "Starting MASSA Client..."
 
 if [[ -z "$MASSA_PASS" ]]; then
-      echo "MASSA_PASS not set. Using $PASS_FILE"
+   echo "MASSA_PASS not set. Using $PASS_FILE"
 
-      if [[ ! -f $NODE_PATH/$PASS_FILE ]] || [[ ! -s $NODE_PATH/$PASS_FILE ]]; then
-            echo "$PASS_FILE not found. Exiting..."
-            exit 1
-      fi
+   if [[ ! -f $NODE_PATH/$PASS_FILE ]] || [[ ! -s $NODE_PATH/$PASS_FILE ]]; then
+      echo "$PASS_FILE not found or empty. Exiting..."
+      exit 1
+   fi
 
-      MASSA_PASS=$(cat $NODE_PATH/$PASS_FILE)
+   MASSA_PASS=$(cat $NODE_PATH/$PASS_FILE)
 fi
 
-cd ~/massa-client
+cd $HOME/massa-client
 ./massa-client -p $MASSA_PASS
 
-echo "massa-client exited"
+echo "MASSA Client exited"
 exit 0
-
