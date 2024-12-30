@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+
 NODE_PATH="$HOME/massa-node"
 PASS_FILE="massa-pass.txt"
 
