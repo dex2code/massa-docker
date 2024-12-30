@@ -46,5 +46,5 @@ echo "MASSA_ADDRESS: $(grep "routable_ip" $CONFIG_FILE_PATH/$CONFIG_FILE | awk '
 ./massa-node -p $MASSA_PASS
 
 
-echo "massa-node exited"
+echo "MASSA Node exited"
 exit 0
