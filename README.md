@@ -57,7 +57,7 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 # Expert mode:
 
 ### Clone repository
-    git clone https://github.com/dex2code/massa-docker.git ./massa-docker \\
+    git clone https://github.com/dex2code/massa-docker.git ./massa-docker &&\
     cd massa-docker
 
 ### Build image
