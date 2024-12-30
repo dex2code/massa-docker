@@ -10,7 +10,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 # Simple one-line launch:
 
 ## Starting the node
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container run \
     -d \
@@ -32,7 +31,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 
 
 ## Using the MASSA client to configure the node
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container exec \
     -ti \
@@ -40,7 +38,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     ./massa-client.sh
 
 ## Access to the host shell
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container exec \
     -ti \
@@ -48,7 +45,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     /usr/bin/bash
 
 ## Watch node logs
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container logs -f \
     massa_node_$MASSA_VERSION \
@@ -61,7 +57,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     cd ./massa-docker
 
 ### Build image
-
     MASSA_VERSION="MAIN.2.4"; \
     docker buildx build \
     --build-arg MASSA_VERSION="$MASSA_VERSION" \
@@ -71,7 +66,6 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     .
 
 ### Create container
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container create \
     -h "massa" \
@@ -86,21 +80,23 @@ Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
     -p 33037:33037 \
     massa-node:$MASSA_VERSION
 
-### Run container
+`MASSA_PASS` - Specify your own password or leave this variable empty so that the container generates and remembers a random password
 
+`MASSA_ADDRESS` - Specify your external address so that your node is a full member of the network
+
+
+### Start container
     MASSA_VERSION="MAIN.2.4"; \
     docker container start massa_node_$MASSA_VERSION
 
 ### Stop container
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container stop massa_node_$MASSA_VERSION
 
 ### Remove container
-
     MASSA_VERSION="MAIN.2.4"; \
     docker container rm massa_node_$MASSA_VERSION
 
-
-
-
+### Remove image
+    MASSA_VERSION="MAIN.2.4"; \
+    docker image rm massa-node:$MASSA_VERSION
