@@ -28,7 +28,8 @@ RUN   --mount=type=cache,target=~/.cache \
             build-essential \
             libssl-dev \
             libclang-dev cmake \
-      && apt-get clean
+      && apt-get clean \
+      && rm -rf /var/lib/apt/lists/*
 
 RUN   git clone https://github.com/massalabs/massa.git ${MASSA_BUILD}
 
@@ -56,8 +57,9 @@ LABEL version="${MASSA_VERSION}"
 
 RUN   --mount=type=cache,target=~/.cache \
       apt-get update \
-      && apt-get -y install nano less\
-      && apt-get clean
+      && apt-get -y install nano less \
+      && apt-get clean \
+      && rm -rf /var/lib/apt/lists/*
 
 RUN   groupadd \
             -g ${MASSA_GID} \
