@@ -5,6 +5,9 @@ The MASSA blockchain node ( https://massa.net ) can be launched with a single co
 **Important!** Before proceeding further, make sure that Docker is installed on your server.
 More details here: https://www.docker.com/get-started/
 
+
+Link to Github repository: https://github.com/dex2code/massa-docker
+
 Link to Docker repository: https://hub.docker.com/r/dex2build/massa-node
 
 # Simple one-line launch:
